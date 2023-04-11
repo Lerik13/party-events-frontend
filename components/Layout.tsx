@@ -3,6 +3,8 @@ import Head from 'next/head';
 import styles from '../styles/Layout.module.css';
 import Header from './Header';
 import Footer from './Footer';
+import Showcase from './Showcase';
+import { useRouter } from 'next/router';
 
 interface LayoutProps {
 	title: string;
@@ -15,6 +17,9 @@ const Layout: React.FC<LayoutProps> = ({
 		keywords = 'music, dj, event, party',
 		description = 'Find the latest DJ and other musical events',
 		children }) => {
+
+	const router = useRouter()
+
 	return (
 		<div>
 			<Head>
@@ -24,6 +29,9 @@ const Layout: React.FC<LayoutProps> = ({
 			</Head>
 
 			<Header />
+
+			{router.pathname === '/' && <Showcase />}
+
 			<div className={styles.container}>
 				{children}
 			</div>
