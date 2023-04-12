@@ -33,11 +33,12 @@ export default HomePage;
 
 //export async function getServerSideProps() {
 export async function getStaticProps() {
-	const res = await fetch(`${API_URL}/api/events`)
+	const res = await fetch(`${API_URL}/events?_sort=date:ASC&_limit=3`)
 	const events = await res.json()
-
+	
 	return {
-		props: {events: events.slice(0, 3)}, // top 3 events
+		//props: {events: events.slice(0, 3)}, // top 3 events
+		props: {events},
 		revalidate: 1,	// revalidate data every 1 sec, if data has changed => update data
 	}
 }
