@@ -1,11 +1,54 @@
 import React from 'react'
+import Link from 'next/link';
+import Image from 'next/image';
+import { FaPencilAlt, FaTimes } from 'react-icons/fa';
 import Layout from '@/components/Layout'
 import { API_URL } from '@/config'
+import { IEvent } from '@/types/event';
+import styles from '@/styles/Event.module.css';
 
-const EventPage = ({event}) => {
+interface EventProps {
+	tracks: IEvent;
+}
+
+const EventPage: React.FC<EventProps> = ({event}) => {
+	const deleteEvent = (e) => {
+		console.log('delete')
+	}
+
 	return (
 		<Layout>
-			<h1>{event.name}</h1>
+			<div className={styles.event}>
+				<div className={styles.controls}>
+					<Link href={`/events/edit/${event.id}`}>
+						<FaPencilAlt /> Edit Event
+					</Link>
+					<a href="#" className={styles.delete} onClick={deleteEvent}>
+						<FaTimes /> Delete Event
+					</a>
+				</div>
+
+				<span>
+					{event.date} at {event.time}
+				</span>
+				<h1>{event.name}</h1>
+				{event.image && (
+					<div className={styles.image}>
+						<Image src={event.image} width={960} height={600} alt={event.name} />
+					</div>
+				)}
+
+				<h3>Performers:</h3>
+				<p>{event.performers}</p>
+				<h3>Description:</h3>
+				<p>{event.description}</p>
+				<h3>Venue: {event.venue}</h3>
+				<p>{event.address}</p>
+
+				<Link href='/events' className={styles.back}>
+					{'<'} Go Back
+				</Link>
+			</div>
 		</Layout>
 	)
 }
