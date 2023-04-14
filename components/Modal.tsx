@@ -31,7 +31,7 @@ const Modal = ({show, onClose, children, title}) => {
 
 	if (isBrowser) {
 		return ReactDOM.createPortal(
-			modalContent, 
+			modalContent,
 			document.getElementById("modal-root")
 		)
 	} else {
