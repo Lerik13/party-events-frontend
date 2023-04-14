@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { API_URL } from '@/config';
 import { formatDateForInput } from '@/utils/formatDate'
 import { FaImage } from 'react-icons/fa';
+import Modal from '@/components/Modal';
 
 const EditEventPage = ({event}) => {
 	const [values, setValues] = useState({
@@ -21,8 +22,8 @@ const EditEventPage = ({event}) => {
 		description: event.description
 	})
 	const [imagePreview, setImagePreview] = useState(event.image ? event.image.formats.thumbnail.url : null)
-	console.log('-imagePreview:')
-	console.log(imagePreview)
+
+	const [showModal, setShowModal] = useState(false)
 
 	const router = useRouter()
 
@@ -107,10 +108,14 @@ const EditEventPage = ({event}) => {
 				</div>
 			)}
 			<div>
-				<button className='btn-secondary'>
+				<button className='btn-secondary' onClick={() => setShowModal(true)}>
 					<FaImage /> Set Image
 				</button>
 			</div>
+
+			<Modal show={showModal} onClose={() => setShowModal(false)}>
+				Image upload
+			</Modal>
 		</Layout>
 	)
 }
