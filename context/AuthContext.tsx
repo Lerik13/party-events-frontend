@@ -29,7 +29,7 @@ export const AuthProvider = ({children}) => {
 		if (res.ok) {
 			setUser(data.user)
 			setError(null)
-			router.push('/dashboard')
+			router.push('/account/dashboard')
 		} else {
 			//console.log('!!! Error: '+ data.message)
 			setError(data.message)
@@ -57,7 +57,7 @@ export const AuthProvider = ({children}) => {
 			//console.log('!!! User logged in')
 			setUser(data.user)
 			setError(null)
-			router.push('/dashboard')
+			router.push('/account/dashboard')
 		} else {
 			//console.log('!!! Error: '+ data.message)
 			setError(data.message)

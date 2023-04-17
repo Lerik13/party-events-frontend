@@ -11,8 +11,9 @@ import { API_URL } from '@/config';
 import { formatDateForInput } from '@/utils/formatDate'
 import Modal from '@/components/Modal';
 import ImageUpload from '@/components/ImageUpload';
+import { parseCookies } from '@/helpers';
 
-const EditEventPage = ({event}) => {
+const EditEventPage = ({event, token}) => {
 	const [values, setValues] = useState({
 		name: event.name,
 		performers: event.performers,
@@ -40,12 +41,17 @@ const EditEventPage = ({event}) => {
 		const res = await fetch(`${API_URL}/events/${event.id}`, {
 			method: 'PUT',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`
 			},
 			body: JSON.stringify(values)
 		})
 
 		if (!res.ok) {
+			if (res.status === 403 || res.status === 401) {
+				toast.error('Unauthorized')
+				return
+			}
 			toast.error('Something went wrong')
 		} else {
 			const evt = await res.json()
@@ -122,7 +128,7 @@ const EditEventPage = ({event}) => {
 			</div>
 
 			<Modal show={showModal} onClose={() => setShowModal(false)}>
-				<ImageUpload eventId={event.id} imageUploaded={imageUploaded} />
+				<ImageUpload eventId={event.id} imageUploaded={imageUploaded} token={token} />
 			</Modal>
 		</Layout>
 	)
@@ -133,12 +139,13 @@ export default EditEventPage
 export async function getServerSideProps({ params: {id}, req }) {
 	const res = await fetch(`${API_URL}/events/${id}`)
 	const event = await res.json()
-
-	console.log(req.headers.cookie)
+	const {token} = parseCookies(req)
+	//console.log(req.headers.cookie)
 	
 	return {
 		props: {
-			event
+			event,
+			token
 		}
 	}
 }

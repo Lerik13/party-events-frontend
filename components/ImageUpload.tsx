@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styles from '@/styles/Form.module.css';
 import { API_URL } from '@/config';
 
-const ImageUpload = ({eventId, imageUploaded}) => {
+const ImageUpload = ({ eventId, imageUploaded, token }) => {
 	const [image, setImage] = useState(null)
 
 	const handleFileChange = (e) => {
@@ -19,6 +19,9 @@ const ImageUpload = ({eventId, imageUploaded}) => {
 
 		const res = await fetch(`${API_URL}/upload`, {
 			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${token}`
+			},
 			body: formData
 		})
 
