@@ -1,16 +1,25 @@
-import React, {useState} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import { FaUser } from 'react-icons/fa';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import styles from '@/styles/AuthForm.module.css';
 import Layout from '@/components/Layout';
 import Link from 'next/link';
+import AuthContext from '@/context/AuthContext';
 
 const RegisterPage = () => {
 	const [username, setUsername] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [passwordConfirm, setPasswordConfirm] = useState('')
+
+	const {register, error} = useContext(AuthContext)
+
+	useEffect(() => {
+		if (error) {
+			toast.error(error)
+		}
+	}, [error])
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -19,7 +28,7 @@ const RegisterPage = () => {
 			toast.error('Password do not match')
 			return
 		}
-		console.log({email, password})
+		register({ username, email, password })
 	}
 
 	return (
@@ -39,7 +48,7 @@ const RegisterPage = () => {
 					<label htmlFor="passwordConfirm">Confirm Password</label>
 					<input type="password" id="passwordConfirm" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} />
 
-					<input type="submit" value="Login" className='btn' />
+					<input type="submit" value="Submit" className='btn' />
 				</form>
 
 				<p>Already have an account? <Link href='/account/login'>Login</Link></p>
