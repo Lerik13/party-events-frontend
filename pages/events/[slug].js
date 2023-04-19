@@ -2,15 +2,11 @@ import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '@/components/Layout'
-import { API_URL } from '@/config'
-import { IEvent } from '@/types/event';
+import { API_URL } from '@/config/index'
 import styles from '@/styles/Event.module.css';
-interface EventProps {
-	tracks: IEvent;
-}
+import EventMap from '@/components/EventMap';
 
-const EventPage: React.FC<EventProps> = ({event}) => {
-	
+const EventPage = ({event}) => {
 	return (
 		<Layout>
 			<div className={styles.event}>
@@ -31,9 +27,13 @@ const EventPage: React.FC<EventProps> = ({event}) => {
 				<p>{event.description}</p>
 				<h3>Venue: {event.venue}</h3>
 				<p>{event.address}</p>
+				
+				<EventMap evt={event} />
 
-				<Link href='/events' className={styles.back}>
-					{'<'} Go Back
+				<Link href='/events'>
+					<a className={styles.back}>
+						{'<'} Go Back
+					</a>
 				</Link>
 			</div>
 		</Layout>

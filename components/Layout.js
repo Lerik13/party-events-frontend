@@ -6,20 +6,10 @@ import Footer from './Footer';
 import Showcase from './Showcase';
 import { useRouter } from 'next/router';
 
-interface LayoutProps {
-	title: string;
-	keywords: string;
-	description: string;
-}
-
-const Layout: React.FC<LayoutProps> = ({
-		title = 'DJ Events | Find the hottest parties',
-		keywords = 'music, dj, event, party',
-		description = 'Find the latest DJ and other musical events',
-		children }) => {
+const Layout = ({ title, keywords, description, children }) => {
 
 	const router = useRouter()
-
+	
 	return (
 		<div>
 			<Head>
@@ -41,3 +31,9 @@ const Layout: React.FC<LayoutProps> = ({
 }
 
 export default Layout;
+
+Layout.defaultProps = {
+	title: 'DJ Events | Find the hottest parties',
+	description: 'Find the latest DJ and other musical events',
+	keywords: 'music, dj, edm, events',
+}

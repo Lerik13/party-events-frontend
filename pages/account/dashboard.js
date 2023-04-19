@@ -1,11 +1,11 @@
 import React from 'react'
 import Layout from '@/components/Layout'
 import { useRouter } from 'next/router';
-import { parseCookies } from '@/helpers/index.ts';
-import { API_URL } from '@/config';
+import { parseCookies } from '@/helpers/index';
 import styles from '@/styles/Dashboard.module.css';
 import DashboardEvent from '@/components/DashboardEvent';
 import { ToastContainer, toast } from 'react-toastify';
+import { API_URL } from '@/config/index';
 
 const DashboardPage = ({ events, token }) => {
 	const router = useRouter()

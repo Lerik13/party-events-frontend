@@ -7,11 +7,11 @@ import styles from '@/styles/Form.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { FaImage } from 'react-icons/fa';
-import { API_URL } from '@/config';
 import { formatDateForInput } from '@/utils/formatDate'
 import Modal from '@/components/Modal';
 import ImageUpload from '@/components/ImageUpload';
-import { parseCookies } from '@/helpers';
+import { parseCookies } from '@/helpers/index';
+import { API_URL } from '@/config/index';
 
 const EditEventPage = ({event, token}) => {
 	const [values, setValues] = useState({

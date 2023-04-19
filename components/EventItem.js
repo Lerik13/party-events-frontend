@@ -2,13 +2,8 @@ import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/styles/EventItem.module.css';
-import { IEvent } from '@/types/event';
 
-interface EventItemProps {
-	event: IEvent;
-}
-
-const EventItem: React.FC<EventItemProps> = ({event}) => {
+const EventItem = ({event}) => {
 	return (
 		<div className={styles.event}>
 			<div className={styles.img}>
@@ -26,8 +21,10 @@ const EventItem: React.FC<EventItemProps> = ({event}) => {
 				<h3>{event.name}</h3>
 			</div>
 			<div className={styles.link}>
-				<Link href={`/events/${event.slug}`} className='btn'>
-					Details
+				<Link href={`/events/${event.slug}`}>
+					<a className='btn'>
+						Details
+					</a>
 				</Link>
 			</div>
 		</div>

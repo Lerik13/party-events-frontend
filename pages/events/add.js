@@ -5,8 +5,8 @@ import Layout from '@/components/Layout'
 import styles from '@/styles/Form.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
-import { API_URL } from '@/config';
-import { parseCookies } from '@/helpers';
+import { parseCookies } from '@/helpers/index';
+import { API_URL } from '@/config/index';
 
 const AddEventPage = ({token}) => {
 	const [values, setValues] = useState({

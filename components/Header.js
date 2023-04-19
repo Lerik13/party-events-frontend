@@ -7,6 +7,7 @@ import AuthContext from '@/context/AuthContext';
 
 const Header = () => {
 	const {user, logout} = useContext(AuthContext)
+//console.log('user:'); console.log(user)
 
 	return (
 		<header className={styles.header}>
@@ -15,7 +16,7 @@ const Header = () => {
 					DJ Events
 				</Link>
 			</div>
-
+			
 			<Search />
 			
 			<nav>
@@ -43,13 +44,16 @@ const Header = () => {
 						</li>
 					</> : <>
 						<li>
-							<Link href='/account/login' className='btn-secondary btn-icon'>
-								<FaSignInAlt /> Login
+							<Link href='/account/login' >
+								<a className='btn-secondary btn-icon'>
+									<FaSignInAlt /> Login
+								</a>
 							</Link>
 						</li>
 					</>}
 				</ul>
 			</nav>
+			
 		</header>
 	)
 }

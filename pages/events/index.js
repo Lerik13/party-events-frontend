@@ -1,8 +1,8 @@
 import React from 'react'
 import Layout from '@/components/Layout'
 import EventItem from '@/components/EventItem';
-import { API_URL, PER_PAGE } from '@/config';
 import Pagination from '@/components/Pagination';
+import { API_URL, PER_PAGE } from '@/config/index';
 
 const EventsPage = ({ events, page, total }) => {
 

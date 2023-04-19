@@ -1,16 +1,12 @@
 import React from 'react';
-import Layout from "@/components/Layout";
-import { API_URL } from "@/config/index";
-import EventItem from '@/components/EventItem';
 import Link from 'next/link';
-//import { IEvent } from '@/types/event';
+import Layout from "@/components/Layout";
+import EventItem from '@/components/EventItem';
+import { API_URL } from "@/config/index";
 
-/*interface EventsProps {
-	tracks: IEvent[]
-}*/
-
-//const HomePage: React.FC<EventsProps> = ({events}) => {
 const HomePage = ({events}) => {
+	//console.log(events)
+	//return (<Layout> Home </Layout>)
 	return (
 		<Layout>
 			<h1>Upcoming Events</h1>
@@ -21,8 +17,10 @@ const HomePage = ({events}) => {
 			))}
 
 			{events.length > 0 && (
-				<Link href='/events' className='btn-secondary'>
-					View All Events
+				<Link href='/events'>
+					<a className='btn-secondary'>
+						View All Events
+					</a>
 				</Link>
 			)}
 		</Layout>
